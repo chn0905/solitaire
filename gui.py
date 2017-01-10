@@ -31,12 +31,10 @@ class App:
         self.button4.pack(side=LEFT)
         
     def _draw_board(self):
-        fill = "blue"
+        fill = "blue","white"
         for x in range(X_LIM):
-            fill = "white" if fill == "blue" else "blue"
             for y in range(Y_LIM):
-                self.canvas.create_rectangle(SIZE*x, SIZE*y, SIZE*(x+1), SIZE*(y+1), fill=fill)
-                fill = "white" if fill == "blue" else "blue"
+                self.canvas.create_rectangle(SIZE*x, SIZE*y, SIZE*(x+1), SIZE*(y+1), fill=fill[(x+y)%2])
 
     def _add_piece(self, name, pos):
         self.pieces.append((name, pos))
@@ -89,11 +87,11 @@ class App:
         print("Finding Solution for ...")
         for piece in self.pieces:
             print(piece)
+        print("Total {} Pieces".format(len(self.pieces)))
         print()
         game = Solver( tuple(self.pieces) )
         if game.findSolution():
             print("[Solution]")
-            print("Total {} Steps".format(len(game.solution)))
             for line in game.solution:
                 print(line)
         else:

@@ -1,4 +1,4 @@
-from solution import *
+from solver import *
 from tkinter import Tk, Frame, Canvas, Button, LEFT
 from tkinter.filedialog import askopenfilename, asksaveasfilename
 import pickle
